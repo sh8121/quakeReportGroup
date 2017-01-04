@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Returns new URL object from the given string URL.
          */
-        private URL createUrl(String stringUrl) {
+        private URL createUrl(String stringUrl){
             URL url = null;
             try {
                 url = new URL(stringUrl);
@@ -174,9 +174,12 @@ public class MainActivity extends AppCompatActivity {
                 if(urlConnection.getResponseCode() == SUCCESS_STATUS_CODE){
                     inputStream = urlConnection.getInputStream();
                     jsonResponse = readFromStream(inputStream);
+                }else{
+                    Log.e("MainActivity", "Failed, Http Response Code: " + urlConnection.getResponseCode());
                 }
             } catch (IOException e) {
                 // TODO: Handle the exception
+                Log.e("MainActivity", "IOException", e);
             }
             finally {
                 if (urlConnection != null) {
